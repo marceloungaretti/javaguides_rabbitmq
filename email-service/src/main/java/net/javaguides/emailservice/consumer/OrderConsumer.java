@@ -13,6 +13,7 @@ public class OrderConsumer {
 
     @RabbitListener(queues = "${rabbitmq.queue.email.name}")
     public void consume(OrderEvent event){
+        //caso de erro para rodar a aplicacao de email pq a fila nao existe, mandar uma mensagem para ela, que entao o outro serviço vai criar
         LOGGER.info(String.format("Order event received in email service => %s", event.toString()));
     }
 }
